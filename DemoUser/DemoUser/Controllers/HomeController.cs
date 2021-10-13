@@ -21,7 +21,7 @@ namespace DemoUser.Controllers
         //    _logger = logger;
         //}
         private IMongoCollection<User> collection;
-        public HomeController()
+        public HomeController() //
         {
             var client = new MongoClient("mongodb://localhost:27017");
             IMongoDatabase db = client.GetDatabase("MYDB");
@@ -61,34 +61,34 @@ namespace DemoUser.Controllers
         public IActionResult insertUser(User user)
         {
             collection.InsertOne(user);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); //
         }
 
         public IActionResult profile()
         {
-            User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault();
+            User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault(); //
             return View(user);
         }
 
         [HttpPost]
         public IActionResult updateUser(User user)
         {
-            var filter = Builders<User>.Filter.Eq("Id", user.Id);
-            var updateDef = Builders<User>.Update.Set("FirstName", user.FirstName);
-            updateDef = updateDef.Set("LastName", user.LastName);
-            updateDef = updateDef.Set("LastName", user.LastName);
-            updateDef = updateDef.Set("Email", user.Email);
-            updateDef = updateDef.Set("Username", user.Username);
-            updateDef = updateDef.Set("Password", user.Password);
-            var result = collection.UpdateOne(filter, updateDef);
+            var filter = Builders<User>.Filter.Eq("Id", user.Id); //
+            var updateUser = Builders<User>.Update.Set("FirstName", user.FirstName); //
+            updateUser = updateUser.Set("LastName", user.LastName);
+            updateUser = updateUser.Set("LastName", user.LastName);
+            updateUser = updateUser.Set("Email", user.Email);
+            updateUser = updateUser.Set("Username", user.Username);
+            updateUser = updateUser.Set("Password", user.Password);
+            var result = collection.UpdateOne(filter, updateUser);
 
             if (result.IsAcknowledged)
             {
-                ViewBag.Message = "User updated successfully!";
+                ViewBag.Message = "User updated complete!";
             }
             else
             {
-                ViewBag.Message = "Error while updating User!";
+                ViewBag.Message = "Error!";
             }
             return View(user);
         }
@@ -100,11 +100,11 @@ namespace DemoUser.Controllers
 
             if (result.IsAcknowledged)
             {
-                TempData["Message"] = "Employee deleted successfully!";
+                TempData["Message"] = "User deleted !";
             }
             else
             {
-                TempData["Message"] = "Error while deleting Employee!";
+                TempData["Message"] = "Error  deleting User !";
             }
             return RedirectToAction("Index");
         }
@@ -114,7 +114,7 @@ namespace DemoUser.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] 
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
