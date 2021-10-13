@@ -12,9 +12,6 @@ namespace DemoUser.Models
         [BsonId]
         public ObjectId Id { get; set; }
 
-        /*[BsonElement]
-        public int UserID { get; set; }*/
-
         [BsonElement]
         public string FirstName { get; set; }
 

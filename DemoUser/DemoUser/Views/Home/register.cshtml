@@ -1,17 +1,13 @@
 ﻿@model DemoUser.Models.User
 
 
-<h1>Add User</h1>
+<h1>Sign Up</h1>
 
 <h2>@ViewBag.Message</h2>
 
-<form asp-controller="Home" asp-action=" insertUser"
+<form asp-controller="Home" asp-action="insertUser"
       method="post">
     <table border="1" cellpadding="10">
-        <tr>
-            <td>User Id :</td>
-            <td><input asp-for="Id " /></td>
-        </tr>
         <tr>
             <td>First Name :</td>
             <td><input asp-for="FirstName" /></td>
@@ -26,16 +22,16 @@
             <td><input asp-for="Username" /></td>
         </tr>
         <tr>
-            <td>Password :</td>
-            <td><input asp-for="Password" /></td>
-        </tr>
-        <tr>
             <td>Email :</td>
             <td><input asp-for="Email" /></td>
         </tr>
         <tr>
+            <td>Password :</td>
+            <td><input type="password" asp-for="Password" /></td>
+        </tr>
+        <tr>
             <td colspan="2">
-                <button type="submit">Save</button>
+                <button type="submit">Sign up</button>
             </td>
         </tr>
     </table>

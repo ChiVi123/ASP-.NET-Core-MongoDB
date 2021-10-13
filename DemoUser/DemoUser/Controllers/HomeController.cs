@@ -13,13 +13,7 @@ using System.Threading.Tasks;
 namespace DemoUser.Controllers
 {
     public class HomeController : Controller
-    {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
+    {        
         private IMongoCollection<User> collection;
         public HomeController() //
         {
@@ -34,7 +28,7 @@ namespace DemoUser.Controllers
         }
 
         [HttpPost]
-        public IActionResult validate(User user)
+        public IActionResult Index(User user) //
         {
             var userobj = collection.Find(x => x.Username == user.Username).FirstOrDefault();
             /*khong dang nhap duoc khi
@@ -65,6 +59,12 @@ namespace DemoUser.Controllers
         }
 
         public IActionResult profile()
+        {
+            User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault(); //
+            return View(user);
+        }
+
+        public IActionResult editUser()
         {
             User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault(); //
             return View(user);

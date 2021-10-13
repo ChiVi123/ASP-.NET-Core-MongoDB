@@ -1,8 +1,40 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Login";
 }
+@model DemoUser.Models.User;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>Login</h1>
+
+<h2>@ViewBag.Message</h2>
+
+<div class="row">
+
+    <form asp-controller="Home" asp-action="Index" method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Username: </label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" asp-for="Username" style="width: 100%;" placeholder="Username" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Password: </label>
+            </div>
+            <div class="col-md-8">
+                <input type="password" asp-for="Password" style="width: 100%;" placeholder="Passwod" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <a asp-action="register" style="float: right;">Sign up</a>
+            </div>
+        </div>
+    </form>
+
 </div>
