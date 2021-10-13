@@ -71,15 +71,14 @@ namespace DemoUser.Controllers
         }
 
         [HttpPost]
-        public IActionResult updateUser(User user)
+        public IActionResult editUser(string id, User user)
         {
+            user.Id = new ObjectId(id);
             var filter = Builders<User>.Filter.Eq("Id", user.Id); //
             var updateUser = Builders<User>.Update.Set("FirstName", user.FirstName); //
             updateUser = updateUser.Set("LastName", user.LastName);
-            updateUser = updateUser.Set("LastName", user.LastName);
-            updateUser = updateUser.Set("Email", user.Email);
             updateUser = updateUser.Set("Username", user.Username);
-            updateUser = updateUser.Set("Password", user.Password);
+            updateUser = updateUser.Set("Email", user.Email);
             var result = collection.UpdateOne(filter, updateUser);
 
             if (result.IsAcknowledged)
@@ -90,13 +89,15 @@ namespace DemoUser.Controllers
             {
                 ViewBag.Message = "Error!";
             }
-            return View(user);
+            return RedirectToAction("profile");
+            //return View(result); //khong the tra ve trang edit dan den bao loi
         }
 
         [HttpPost]
-        public IActionResult delete(User user)
-        {            
-            var result = collection.DeleteOne<User>(e => e.Id == user.Id);
+        public IActionResult delete(string id)
+        {
+            ObjectId Idobj = new ObjectId(id);
+            var result = collection.DeleteOne<User>(e => e.Id == Idobj);
 
             if (result.IsAcknowledged)
             {
