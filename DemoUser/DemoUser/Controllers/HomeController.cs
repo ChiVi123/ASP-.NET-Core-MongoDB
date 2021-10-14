@@ -15,10 +15,11 @@ namespace DemoUser.Controllers
     public class HomeController : Controller
     {        
         private IMongoCollection<User> collection;
-        public HomeController() //
+        public HomeController()
         {
             var client = new MongoClient("mongodb://localhost:27017");
             IMongoDatabase db = client.GetDatabase("MYDB");
+            //gan collection vao thuoc tinh collection
             this.collection = db.GetCollection<User>("Users");
         }
 
@@ -28,7 +29,7 @@ namespace DemoUser.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(User user) //
+        public IActionResult Index(User user)
         {
             var userobj = collection.Find(x => x.Username == user.Username).FirstOrDefault();
             /*khong dang nhap duoc khi
@@ -55,18 +56,20 @@ namespace DemoUser.Controllers
         public IActionResult insertUser(User user)
         {
             collection.InsertOne(user);
-            return RedirectToAction("Index"); //
+            return RedirectToAction("Index"); //chuyen huong den Index
         }
 
         public IActionResult profile()
         {
-            User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault(); //
+            //kiem tra id co trong collection khong
+            //tra ve la mot user hoac null
+            User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault();
             return View(user);
         }
 
         public IActionResult editUser()
         {
-            User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault(); //
+            User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault();
             return View(user);
         }
 
@@ -74,8 +77,8 @@ namespace DemoUser.Controllers
         public IActionResult editUser(string id, User user)
         {
             user.Id = new ObjectId(id);
-            var filter = Builders<User>.Filter.Eq("Id", user.Id); //
-            var updateUser = Builders<User>.Update.Set("FirstName", user.FirstName); //
+            var filter = Builders<User>.Filter.Eq("Id", user.Id);
+            var updateUser = Builders<User>.Update.Set("FirstName", user.FirstName);
             updateUser = updateUser.Set("LastName", user.LastName);
             updateUser = updateUser.Set("Username", user.Username);
             updateUser = updateUser.Set("Email", user.Email);
@@ -91,6 +94,12 @@ namespace DemoUser.Controllers
             }
             return RedirectToAction("profile");
             //return View(result); //khong the tra ve trang edit dan den bao loi
+        }
+
+        public IActionResult delete()
+        {
+            User user = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault();
+            return View(user);
         }
 
         [HttpPost]
