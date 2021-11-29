@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eJYAnmik/sW/smaBCNM4tb7FRakf901o1pl4dJ90HcsOr9Qwl0GRjHxmknj39xhbjBtkFmfiDHo2GrH/PWYLMg==",
+  "dgSpecHash": "LGPeQpNdznzYs61wsqvQpTJHyWh/dY+0gJo/2qxKA+9P4OWbocEyVM6E0gGuONfBu1cvmY6aiQBTAPDQXFTuhg==",
   "success": true,
-  "projectFilePath": "D:\\Do-an\\ASP-.NET-Core-MongoDB\\DemoUser\\DemoUser\\DemoUser.csproj",
+  "projectFilePath": "D:\\Hoc tap\\Do an CNTT\\Finaal 2\\ASP-.NET-Core-MongoDB\\DemoUser\\DemoUser\\DemoUser.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
