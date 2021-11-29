@@ -9,18 +9,17 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DemoUser.MyDB;
 
 namespace DemoUser.Controllers
 {
     public class HomeController : Controller
     {        
         private IMongoCollection<User> collection;
+        ConnectDB connect = new ConnectDB();
         public HomeController()
         {
-            var client = new MongoClient("mongodb://localhost:27017");
-            IMongoDatabase db = client.GetDatabase("MYDB");
-            //gan collection vao thuoc tinh collection
-            this.collection = db.GetCollection<User>("Users");
+            this.collection = connect.getConnect().GetCollection<User>("Users");
         }
 
         public IActionResult Index()

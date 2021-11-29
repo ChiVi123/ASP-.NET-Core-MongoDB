@@ -396,3 +396,8 @@ D:\Hoc tap\Do an CNTT\Finaal 2\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug
 D:\Hoc tap\Do an CNTT\Finaal 2\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug\net5.0\ref\DemoUser.dll
 D:\Hoc tap\Do an CNTT\Finaal 2\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug\net5.0\DemoUser.pdb
 D:\Hoc tap\Do an CNTT\Finaal 2\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug\net5.0\DemoUser.genruntimeconfig.cache
+D:\Do-an\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug\net5.0\Razor\Views\Content\addContent.cshtml.g.cs
+D:\Do-an\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug\net5.0\Razor\Views\Content\deleteContent.cshtml.g.cs
+D:\Do-an\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug\net5.0\Razor\Views\Content\editContent.cshtml.g.cs
+D:\Do-an\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug\net5.0\Razor\Views\Content\viewContent.cshtml.g.cs
+D:\Do-an\ASP-.NET-Core-MongoDB\DemoUser\DemoUser\obj\Debug\net5.0\Razor\Views\Shared\welcome.cshtml.g.cs
