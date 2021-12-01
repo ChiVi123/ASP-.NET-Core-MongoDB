@@ -10,10 +10,10 @@ namespace DemoUser.MyDB
     public class ConnectDB
     {
         public ConnectDB() { }
-        
+
         public IMongoDatabase getConnect()
         {
-            var client = new MongoClient("mongodb://localhost:27017");            
+            var client = new MongoClient("mongodb://localhost:27017");
             return client.GetDatabase("MYDB"); ;
         }
     }
