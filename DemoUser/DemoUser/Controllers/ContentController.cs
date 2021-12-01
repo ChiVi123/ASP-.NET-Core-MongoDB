@@ -1,29 +1,16 @@
-<<<<<<< HEAD
-﻿using DemoUser.Global;
+using DemoUser.Global;
 using DemoUser.Models;
 using DemoUser.MyDB;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
-=======
-﻿using DemoUser.Models;
-using Microsoft.AspNetCore.Mvc;
->>>>>>> fdcab8e9979aae6a79a779b0eb99dad591a2309f
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using DemoUser.MyDB;
-using MongoDB.Driver;
-using DemoUser.Global;
-using MongoDB.Bson;
 
 namespace DemoUser.Controllers
 {
     public class ContentController : Controller
     {
-<<<<<<< HEAD
-
         private IMongoCollection<Content> collection;
         ConnectDB connect = new ConnectDB();
         public ContentController()
@@ -32,23 +19,14 @@ namespace DemoUser.Controllers
         }
 
         
-        public IActionResult ViewContent()
-=======
-        private IMongoCollection<Content> collection;
-        ConnectDB connect = new ConnectDB();
-        public ContentController() {
-            this.collection = connect.getConnect().GetCollection<Content>("Content");
-        }
-        public IActionResult Index()
->>>>>>> fdcab8e9979aae6a79a779b0eb99dad591a2309f
+        public IActionResult viewContent()
         {
-            var content = collection.Find(x => x.authorid == GLobalId.global_id).ToList();
-           
+            var content = collection.Find(x => x.authorid == GLobalId.global_id).ToList();           
             return View(content);
         }
 
         [HttpPost]
-        public IActionResult delete(string id)
+        public IActionResult deleteContent(string id)
         {
             ObjectId Idobj = new ObjectId(id);
             var result = collection.DeleteOne<Content>(e => e.Id == Idobj);
@@ -67,22 +45,24 @@ namespace DemoUser.Controllers
         [HttpPost]
         public IActionResult addContent(Content content)
         {
+            content.authorid = GLobalId.global_id;
+            content.createdate = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             collection.InsertOne(content);
             return RedirectToAction("viewContent"); 
         }
+
         public IActionResult addContent()
         {
             return View();
         }
-        public IActionResult viewContent()
+
+        public IActionResult editContent(string id)
         {
-            return View();
-        }
-        public IActionResult editContent()
-        {
-            Content content = collection.Find(x => x.Id == GLobalId.global_id).FirstOrDefault();
+            ObjectId Idobj = new ObjectId(id);
+            Content content = collection.Find(x => x.Id == Idobj).FirstOrDefault();
             return View(content);
         }
+
         [HttpPost]
         public IActionResult editContent(string id, Content content)
         {
@@ -92,7 +72,8 @@ namespace DemoUser.Controllers
             var updateContent = Builders<Content>.Update.Set("title", content.title);
             updateContent = updateContent.Set("brief", content.brief);
             updateContent = updateContent.Set("note", content.note);
-       
+            updateContent = updateContent.Set("createdate", DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+
             var result = collection.UpdateOne(filter, updateContent);
 
             if (result.IsAcknowledged)
