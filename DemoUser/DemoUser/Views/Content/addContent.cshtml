@@ -13,10 +13,6 @@
         <div id="sub-title">Add Content</div>
 
         <form id="form-input" asp-action="addContent" method="post" asp-controller="Content">
-            <input type="hidden" name="id" asp-for="Id" />
-
-            <input type="hidden" name="id" asp-for="authorid" />
-
 
             <div class="item">
 
@@ -37,9 +33,9 @@
                 <span asp-validation-for="note" class="text-danger"></span>
             </div>
             <!-- Submit -->
-            <button class="item-button" type="submit"> Submit Button</button>
+            <button type="submit"> Submit Button</button>
             <!-- Clear Character All Field -->
-            <button id="reset" class="item-button" type="reset"> Reset Button</button>
+            <button type="reset"> Reset Button</button>
         </form>
     </div>
-    
+ </body>   
