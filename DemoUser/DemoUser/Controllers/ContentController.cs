@@ -1,10 +1,12 @@
 using DemoUser.Global;
 using DemoUser.Models;
 using DemoUser.MyDB;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace DemoUser.Controllers
@@ -43,10 +45,14 @@ namespace DemoUser.Controllers
         }
 
         [HttpPost]
-        public IActionResult addContent(Content content)
+        public IActionResult addContent(Content content, IFormFile image)
         {
+           
             content.authorid = GLobalId.global_id;
             content.createdate = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            MemoryStream memoryStream = new MemoryStream();
+            image.OpenReadStream().CopyTo(memoryStream);
+            content.image = Convert.ToBase64String(memoryStream.ToArray());
             collection.InsertOne(content);
             return RedirectToAction("viewContent"); 
         }
@@ -55,7 +61,14 @@ namespace DemoUser.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public IActionResult getContent(string contentid)
+        {
+            ObjectId idcontent = new ObjectId(contentid);
+           Content content = collection.Find(x => x.Id == idcontent).FirstOrDefault();
+            return View(content);
+        }
+      
         public IActionResult editContent(string id)
         {
             ObjectId Idobj = new ObjectId(id);
@@ -64,7 +77,7 @@ namespace DemoUser.Controllers
         }
 
         [HttpPost]
-        public IActionResult editContent(string id, Content content)
+        public IActionResult editContent(string id, Content content, IFormFile image)
         {
 
             content.Id = new ObjectId(id);
@@ -73,7 +86,10 @@ namespace DemoUser.Controllers
             updateContent = updateContent.Set("brief", content.brief);
             updateContent = updateContent.Set("note", content.note);
             updateContent = updateContent.Set("createdate", DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
-
+            MemoryStream memoryStream = new MemoryStream();
+            image.OpenReadStream().CopyTo(memoryStream);
+            content.image = Convert.ToBase64String(memoryStream.ToArray());
+            updateContent = updateContent.Set("image", content.image);
             var result = collection.UpdateOne(filter, updateContent);
 
             if (result.IsAcknowledged)

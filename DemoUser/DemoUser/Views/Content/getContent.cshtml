@@ -1,0 +1,38 @@
+﻿
+@model DemoUser.Models.Content
+@{
+    ViewData["Title"] = "getContent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.brief)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.brief)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.note)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.image)
+        </dd>
+    </dl>
+</div>

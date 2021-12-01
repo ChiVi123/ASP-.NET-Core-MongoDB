@@ -26,8 +26,10 @@ namespace DemoUser.Models
         public string createdate { get; set; }
 
         [BsonElement]
-        public ObjectId authorid { get; set; }    
-      
+        public ObjectId authorid { get; set; }
+        [BsonElement]
+        public string image{ get; set; }
+
     }
 }
 
