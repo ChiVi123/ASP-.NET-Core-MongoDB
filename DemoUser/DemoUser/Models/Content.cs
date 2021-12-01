@@ -16,7 +16,10 @@ namespace DemoUser.Models
             [BsonElement]
             public string title { get; set; }
 
-            [BsonElement]
+           [BsonElement]
+          public string brief { get; set; }
+
+        [BsonElement]
             public string note { get; set; }
 
             [BsonElement]
@@ -24,6 +27,8 @@ namespace DemoUser.Models
 
             [BsonElement]
             public string authorid { get; set; }
-        }
+    
+      
+    }
     }
 
