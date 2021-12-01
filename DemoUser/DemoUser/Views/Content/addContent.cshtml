@@ -1,5 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DemoUser.Models.Content
+
 @{
+    ViewData["Title"] = "addContent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="addContent.css" />
+</head>
+<body>
+    <div id="main-content">
+        <div id="sub-title">Add Content</div>
+
+        <form id="form-input" asp-action="addContent" method="post" asp-controller="Content">
+            <input type="hidden" name="id" asp-for="Id" />
+
+            <input type="hidden" name="id" asp-for="authorid" />
+
+
+            <div class="item">
+
+                <label class="form-label">Title</label>
+                <br>
+                <textarea asp-for="title" class="form-label" cols="60">	</textarea>
+
+            </div>
+            <div class="item">
+                <label class="form-label">Brief</label>
+                <br />
+                <textarea asp-for="brief" class="form-label" cols="60">	</textarea>
+            </div>
+            <div class="item">
+                <label asp-for="note" class="form-label">Note</label>
+                <br />
+                <textarea asp-for="note" class="form-label" cols="60">	</textarea>
+                <span asp-validation-for="note" class="text-danger"></span>
+            </div>
+            <!-- Submit -->
+            <button class="item-button" type="submit"> Submit Button</button>
+            <!-- Clear Character All Field -->
+            <button id="reset" class="item-button" type="reset"> Reset Button</button>
+        </form>
+    </div>
+    
