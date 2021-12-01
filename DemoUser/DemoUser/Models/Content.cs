@@ -9,21 +9,21 @@ namespace DemoUser.Models
 {
     public class Content
     {
-       
-            [BsonId]
-            public ObjectId Id { get; set; }
 
-            [BsonElement]
-            public string title { get; set; }
+        [BsonId]
+        public ObjectId Id { get; set; }
 
-            [BsonElement]
-            public string note { get; set; }
+        [BsonElement]
+        public string title { get; set; }
 
-            [BsonElement]
-            public DateTime createdate { get; set; }
+        [BsonElement]
+        public string note { get; set; }
 
-            [BsonElement]
-            public string authorid { get; set; }
-        }
+        [BsonElement]
+        public string createdate { get; set; }
+
+        [BsonElement]
+        public ObjectId authorid { get; set; }
     }
+}
 
