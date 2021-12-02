@@ -26,10 +26,10 @@
                 @Html.DisplayNameFor(model => model.createdate)
             </th>
             @*<th>
-            @Html.DisplayNameFor(model => model.authorid)
-        </th>*@
+                    @Html.DisplayNameFor(model => model.authorid)
+                </th>*@
             <th>
-              Image
+                Image
             </th>
             <th></th>
         </tr>
@@ -37,31 +37,31 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.brief)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.createdate)
-            </td>
-            <td>
-           <img src="data:image/png;base64, @item.image" width="100px" height="100px"/>
-        </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.authorid)
-        </td>*@
-            <td>
-                @Html.ActionLink("Edit", "editContent", new { id = item.Id }) |
-                @Html.ActionLink("Remove", "deleteContent", new { id = item.Id })
-                @Html.ActionLink("Content", "getContent", new { id = item.Id })
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brief)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createdate)
+                </td>
+                <td>
+                    <img src="data:image/png;base64, @item.image" width="100px" height="100px" />
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.authorid)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "editContent", new { id = item.Id }) |
+                    @Html.ActionLink("Remove", "deleteContent", new { id = item.Id }) |
+                    @Html.ActionLink("Content", "getContent", new { id = item.Id })
+                </td>
+            </tr>
         }
     </tbody>
 </table>
