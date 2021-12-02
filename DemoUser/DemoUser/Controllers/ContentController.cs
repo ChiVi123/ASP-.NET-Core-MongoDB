@@ -20,14 +20,14 @@ namespace DemoUser.Controllers
             this.collection = connect.getConnect().GetCollection<Content>("Contents");
         }
 
-        
+
         public IActionResult viewContent()
         {
-            var content = collection.Find(x => x.authorid == GLobalId.global_id).ToList();           
+            var content = collection.Find(x => x.authorid == GLobalId.global_id).ToList();
             return View(content);
         }
 
-        [HttpPost]
+
         public IActionResult deleteContent(string id)
         {
             ObjectId Idobj = new ObjectId(id);
@@ -41,34 +41,33 @@ namespace DemoUser.Controllers
             {
                 TempData["Message"] = "Error deleting Content !";
             }
-            return RedirectToAction("ViewContent");
+            return RedirectToAction("viewContent");
         }
 
         [HttpPost]
         public IActionResult addContent(Content content, IFormFile image)
         {
-           
             content.authorid = GLobalId.global_id;
             content.createdate = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             MemoryStream memoryStream = new MemoryStream();
             image.OpenReadStream().CopyTo(memoryStream);
             content.image = Convert.ToBase64String(memoryStream.ToArray());
             collection.InsertOne(content);
-            return RedirectToAction("viewContent"); 
+            return RedirectToAction("viewContent");
         }
 
         public IActionResult addContent()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult getContent(string contentid)
+
+        public IActionResult getContent(string id)
         {
-            ObjectId idcontent = new ObjectId(contentid);
-           Content content = collection.Find(x => x.Id == idcontent).FirstOrDefault();
+            ObjectId Idobj = new ObjectId(id);
+            Content content = collection.Find(x => x.Id == Idobj).FirstOrDefault();
             return View(content);
         }
-      
+
         public IActionResult editContent(string id)
         {
             ObjectId Idobj = new ObjectId(id);
@@ -101,7 +100,7 @@ namespace DemoUser.Controllers
                 ViewBag.Message = "Error!";
             }
             return RedirectToAction("viewContent");
-        
+
         }
 
     }
